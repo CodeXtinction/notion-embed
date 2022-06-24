@@ -1,6 +1,16 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-}
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
 
-module.exports = nextConfig
+module.exports = withBundleAnalyzer({
+  staticPageGenerationTimeout: 300,
+  images: {
+    domains: [
+      "www.notion.so",
+      "notion.so",
+      "images.unsplash.com",
+      "pbs.twimg.com",
+    ],
+    formats: ["image/avif", "image/webp"],
+  },
+});
